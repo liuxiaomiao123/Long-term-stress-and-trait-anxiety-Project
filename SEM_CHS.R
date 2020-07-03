@@ -1,3 +1,4 @@
+# written by Liangying, 20/3/2019
 library(tidyverse)
 library(knitr)
 library(lavaan)
@@ -74,8 +75,8 @@ fitmeasures(fsem3)
 
 # ---------------------Group Comparison----------------------------------------------------
 
-# 1¡¢Local estimation   piecewiseSEM test
-options(repos='http://mirrors.tuna.tsinghua.edu.cn/CRAN/')  # ¸Ä³Éhttp£¬ ¶ø²»ÊÇhttps
+# 1Â¡Â¢Local estimation   piecewiseSEM test
+options(repos='http://mirrors.tuna.tsinghua.edu.cn/CRAN/')  # Â¸Ã„Â³Ã‰httpÂ£Â¬ Â¶Ã¸Â²Â»ÃŠÃ‡https
 install.packages("piecewiseSEM")
 
 library(piecewiseSEM)
@@ -87,7 +88,7 @@ pmodel <- psem(
 (pmultigroup <- multigroup(pmodel, group = "group"))
 
 
-# 2¡¢Global estimation  
+# 2Â¡Â¢Global estimation  
 multigroup.model <- '
 IPS_2T ~ STAI
 v ~ IPS_2T
@@ -130,7 +131,7 @@ anova(multigroup1, multigroup3)
 
 
 #------MFG---------------------------------
-# 2¡¢Global estimation  
+# 2Â¡Â¢Global estimation  
 multigroup.model <- '
 MFG ~ STAI
 v ~ MFG
