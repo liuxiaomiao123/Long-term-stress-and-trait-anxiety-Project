@@ -1,0 +1,40 @@
+! Written by Liangying, 11/2/2020
+
+data:file is Mplus_stress_control.dat;
+variable:names are id IPS_2T MFG SSAI STAI v PAS NAS group;
+         usevariables are MFG v SSAI;   !模型中没有出现的变量一定不能加入
+         grouping is group (1=stress 2=control);
+         !missing are all(0);
+analysis: !estimator = ml;   !sobel检验
+          bootstrap = 10000;
+model:
+      v on MFG SSAI;
+      MFG on SSAI;
+     ! STAI with NAS;
+model indirect:
+      v ind MFG SSAI;
+
+model stress:
+      v on SSAI (c1);
+      MFG on SSAI (a1);
+      v on MFG (b1);
+
+model control:
+      v on SSAI(c2);
+      MFG on SSAI (a2);
+      v on MFG (b2);
+
+model constraint:
+      new(s c sc);
+      s = a1 * b1;
+
+      c = a2 * b2;
+      sc = s - c;
+
+!model test:
+    !  s = c;
+
+OUTPUT:
+standardized CINTERVAL(BCBOOTSTRAP);
+
+                                                                                                                                                 
